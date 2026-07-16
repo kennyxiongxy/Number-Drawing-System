@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线抽号系统</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="brand">
+      <h1 class="site-title">在线抽号系统</h1>
+      <p class="site-subtitle">课堂随机抽取小组发言，公平高效</p>
+    </div>
+    <button id="resetBtn" class="btn btn-secondary" type="button">重置</button>
+  </header>
+
+  <main class="main">
+    <section class="stage" aria-live="polite" aria-atomic="true">
+      <div id="roller" class="roller">?</div>
+      <div id="result" class="result-grid hidden" aria-hidden="true"></div>
+      <p id="hint" class="stage-hint">点击“开始抽号”开始抽取</p>
+    </section>
+
+    <section class="controls" aria-label="参数设置">
+      <div class="field">
+        <label for="totalInput">总小组数</label>
+        <input id="totalInput" type="number" min="1" max="999" value="10" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="countInput">每次抽取组数</label>
+        <input id="countInput" type="number" min="1" max="999" value="1" inputmode="numeric">
+      </div>
+      <button id="drawBtn" class="btn btn-primary btn-large" type="button">开始抽号</button>
+      <p id="errorMsg" class="error-msg hidden" role="alert"></p>
+    </section>
+
+    <section class="status" aria-label="抽取状态">
+      <div class="panel">
+        <h2 class="panel-title">剩余未抽取</h2>
+        <div id="remaining" class="chip-container"></div>
+      </div>
+      <div class="panel">
+        <h2 class="panel-title">已抽取记录</h2>
+        <div id="drawn" class="chip-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
