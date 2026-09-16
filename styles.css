@@ -1,5 +1,25 @@
-/* Tailwind CSS CDN */
-@import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
+/* ============================================================================
+   在线抽号系统 · 样式
+   说明：本页不使用任何 Tailwind 工具类，因此已移除 Tailwind CDN 的 @import
+   （离线教室、CDN 抖动时不再受影响）。下面这段极简 reset 替代它原先依赖的
+   preflight，保证布局与之前一致。
+   ========================================================================== */
+h1, h2, h3, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
 
 :root {
   --primary: #FF6B4A;
@@ -25,6 +45,7 @@ html, body {
 }
 
 body {
+  margin: 0;
   font-family: 'Noto Sans SC', 'Noto Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--text);
   background: linear-gradient(135deg, #FFFBF7 0%, #FFF0E3 100%);
@@ -393,6 +414,107 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+/* 仅供读屏使用：视觉上不可见，但不从无障碍树里移除 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 抽号记录 / 公平性核验面板 */
+.log-panel {
+  width: 100%;
+  max-width: 900px;
+  min-height: auto;
+}
+
+.log-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.log-head .panel-title {
+  margin-bottom: 0;
+}
+
+.log-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.log-meta {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  opacity: 0.9;
+}
+
+.log-note {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.log-note code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.375rem;
+  background: rgba(255, 107, 74, 0.1);
+  color: var(--primary-dark);
+  font-size: 0.8125rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.log-list {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.log-item {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  background: rgba(253, 232, 216, 0.55);
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  word-break: break-all;
+}
+
+.btn-small {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+}
+
+/* 尊重系统「减少动态效果」偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .blob,
+  .roller.shake,
+  .number-card {
+    animation: none !important;
+  }
+
+  .btn,
+  .chip,
+  .number-card {
+    transition: none !important;
+  }
 }
 
 /* Responsive */
